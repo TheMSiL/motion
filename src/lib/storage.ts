@@ -4,7 +4,6 @@
  */
 
 export const STORAGE_KEYS = {
-  onboarding: 'motion.onboardingCompleted',
   settings: 'motion.settings',
   savedPlaces: 'motion.savedPlaces',
   notifications: 'motion.notifications',

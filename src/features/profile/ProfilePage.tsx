@@ -205,7 +205,7 @@ export default function ProfilePage() {
         open={resetOpen}
         onClose={() => setResetOpen(false)}
         title="Reset local data?"
-        description="Saved places, goal changes, settings, recorded activities and the onboarding flag are all stored on this device. This cannot be undone."
+        description="Saved places, goal changes, settings and recorded activities are all stored on this device. This cannot be undone."
         footer={
           <div className="flex gap-3">
             <Button variant="secondary" fullWidth onClick={() => setResetOpen(false)}>

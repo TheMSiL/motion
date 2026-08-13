@@ -40,7 +40,6 @@ runtime — including for imagery.
 
 | Route | Screen |
 | --- | --- |
-| `/onboarding` | Five-step intro with swipe, skip and a persisted completion flag |
 | `/` | Home — greeting, hero card, today's stats, quick actions, weekly chart, recent activity |
 | `/activity` | Activity history, grouped by day, filterable by type |
 | `/activity/:id` | Activity detail — animated route map, metrics, elevation profile, splits |
@@ -73,7 +72,7 @@ src/
     maps/       RouteMap, CityBackdrop, PlaceArtwork
     feedback/   Toaster
   features/     home, activity, explore, goals, profile, notifications,
-                onboarding, search, misc — one folder per product area
+                search, misc — one folder per product area
   services/     activity, place, goal, notification, user
   store/        settings, saved, notifications, toasts, live session
   data/         deterministic mock dataset
@@ -141,7 +140,7 @@ There is no map API and no stock photography — nothing loads over the network.
 
 ### What is persisted
 
-`onboardingCompleted`, `theme`, `settings`, `savedPlaces`, notification read/dismissed state, goal
+`theme`, `settings`, `savedPlaces`, notification read/dismissed state, goal
 target overrides, locally recorded activities and recent searches. Only the mutable slice of each
 entity is stored, never whole objects. Profile → *Reset local data* clears all of it.
 

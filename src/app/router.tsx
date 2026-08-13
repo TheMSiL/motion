@@ -18,15 +18,9 @@ const ProfilePage = lazy(() => import('@/features/profile/ProfilePage'))
 const SettingsPage = lazy(() => import('@/features/profile/SettingsPage'))
 const PersonalInfoPage = lazy(() => import('@/features/profile/PersonalInfoPage'))
 const NotificationsPage = lazy(() => import('@/features/notifications/NotificationsPage'))
-const OnboardingPage = lazy(() => import('@/features/onboarding/OnboardingPage'))
 const NotFoundPage = lazy(() => import('@/features/misc/NotFoundPage'))
 
 const router = createBrowserRouter([
-  {
-    path: '/onboarding',
-    element: <OnboardingPage />,
-    errorElement: <RootBoundary />,
-  },
   {
     element: <AppLayout />,
     errorElement: <RootBoundary />,

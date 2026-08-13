@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from 'react'
-import { Navigate, useLocation, useNavigationType, useOutlet } from 'react-router-dom'
+import { useLocation, useNavigationType, useOutlet } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { AppViewport } from '@/components/layout/AppViewport'
 import { BottomNavigation } from '@/components/navigation/BottomNavigation'
@@ -8,7 +8,6 @@ import { Toaster } from '@/components/feedback/Toaster'
 import { CommandPalette } from '@/features/search/CommandPalette'
 import { LiveSessionBar } from '@/features/activity/LiveSessionBar'
 import { ScreenFallback } from '@/components/layout/ScreenFallback'
-import { STORAGE_KEYS, readStorage } from '@/lib/storage'
 
 const TAB_PATHS = ['/', '/activity', '/explore', '/goals', '/profile']
 
@@ -22,8 +21,6 @@ export function AppLayout() {
   const outlet = useOutlet()
   const previousPath = useRef<string | null>(null)
 
-  const onboarded = readStorage<boolean>(STORAGE_KEYS.onboarding, false)
-
   let kind: TransitionKind = 'push'
   if (previousPath.current === null) kind = 'none'
   else if (navigationType === 'POP') kind = 'pop'
@@ -32,8 +29,6 @@ export function AppLayout() {
   useEffect(() => {
     previousPath.current = location.pathname
   }, [location.pathname])
-
-  if (!onboarded) return <Navigate to="/onboarding" replace />
 
   const showNav = isTabPath(location.pathname)
 
