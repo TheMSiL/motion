@@ -166,8 +166,12 @@ export function BottomSheet({
               {children}
             </div>
 
-            {footer && <div className="safe-bottom border-t border-line px-5 py-4">{footer}</div>}
-            {!footer && <div className="safe-bottom pb-2" />}
+            {footer && (
+              <div className="border-t border-line px-5 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+16px)]">
+                {footer}
+              </div>
+            )}
+            {!footer && <div className="pb-[calc(env(safe-area-inset-bottom,0px)+8px)]" />}
           </motion.div>
         </div>
       )}

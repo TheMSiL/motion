@@ -38,6 +38,13 @@ export function OnboardingArt({ slideId }: OnboardingArtProps) {
         </motion.div>
       </AnimatePresence>
 
+      {/* Top scrim: the art bleeds under the status bar and the MOTION / Skip
+          chips, so it has to fade out behind them to stay legible. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--bg)] via-[var(--bg)]/55 to-transparent"
+        aria-hidden="true"
+      />
+
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--bg)] to-transparent"
         aria-hidden="true"
@@ -50,13 +57,15 @@ function WelcomeArt({ reduced }: { reduced: boolean }) {
   return (
     <div className="relative size-full bg-surface-2">
       <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className="size-full">
-        <circle cx="72" cy="30" r="26" fill="var(--accent)" opacity="0.9" />
-        <circle cx="30" cy="66" r="16" fill="var(--ink)" opacity="0.06" />
+        {/* The viewBox is drawn with `slice`, so every unit is ~4× on screen.
+            The disc sits low and inboard to clear the status bar and Skip. */}
+        <circle cx="66" cy="58" r="19" fill="var(--accent)" opacity="0.9" />
+        <circle cx="26" cy="44" r="13" fill="var(--ink)" opacity="0.06" />
         <motion.path
           d={ROUTE_PATH}
           fill="none"
           stroke="var(--ink)"
-          strokeWidth="1.6"
+          strokeWidth="1.4"
           strokeLinecap="round"
           initial={reduced ? false : { pathLength: 0 }}
           animate={reduced ? {} : { pathLength: 1 }}
@@ -69,7 +78,9 @@ function WelcomeArt({ reduced }: { reduced: boolean }) {
 
 function TrackArt({ reduced }: { reduced: boolean }) {
   return (
-    <div className="relative flex size-full items-end justify-center gap-2.5 bg-surface-2 px-10 pb-14">
+    // pt-28 shrinks the content box, so even the 100% bar starts below the
+    // chip row instead of running off the top edge of the phone.
+    <div className="relative flex size-full items-end justify-center gap-2.5 bg-surface-2 px-10 pt-28 pb-14">
       {BARS.map((height, index) => (
         <motion.span
           key={index}

@@ -250,9 +250,9 @@
   box-shadow: var(--shadow-card);
 }
 
-@utility safe-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
+/* Deliberately no `safe-bottom` utility: it collided with every `pb-*` on the
+   same element and silently won on source order. Fold the inset into the
+   padding instead — pb-[calc(env(safe-area-inset-bottom,0px)+Npx)]. */
 
 /* The app always lays out inside a fixed-size viewport: the whole screen on
    mobile, the device frame on desktop. Sizing is left to the caller so the

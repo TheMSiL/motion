@@ -146,7 +146,7 @@ export default function LiveActivityPage() {
         </div>
 
         <div
-          className="safe-bottom flex shrink-0 items-center gap-3 px-[var(--gutter)] pb-6 pt-4"
+          className="flex shrink-0 items-center gap-3 px-[var(--gutter)] pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+24px)]"
         >
           <motion.button
             type="button"

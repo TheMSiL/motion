@@ -141,7 +141,10 @@ export default function OnboardingPage() {
           </AnimatePresence>
         </motion.div>
 
-        <div className="safe-bottom relative z-10 px-[var(--gutter)] pb-5">
+        {/* One padding-bottom declaration: `safe-bottom` and `pb-*` both write
+            padding-bottom, and the utility wins on source order — which zeroed
+            the gap and let the home indicator sit on the buttons. */}
+        <div className="relative z-10 px-[var(--gutter)] pb-[calc(env(safe-area-inset-bottom,0px)+30px)]">
           <div className="mb-5 flex items-center gap-2" role="tablist" aria-label="Onboarding steps">
             {SLIDES.map((item, i) => (
               <button
