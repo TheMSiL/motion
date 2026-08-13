@@ -1,10 +1,12 @@
 import type { ConnectedApp, User } from '@/types'
 
+/* Fictional demo persona. The initials stay MS so the monogram avatar reads
+   the same everywhere it appears. */
 export const user: User = {
   id: 'usr-01',
-  name: 'Max Silka',
-  handle: '@maxsilka',
-  email: 'max@motion.app',
+  name: 'Mara Sinclair',
+  handle: '@marasinclair',
+  email: 'mara.sinclair@example.com',
   city: 'Riverside District',
   initials: 'MS',
   memberSince: 'March 2024',

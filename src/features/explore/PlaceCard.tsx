@@ -71,7 +71,9 @@ export function PlaceCard({ place, variant = 'wide', index = 0, className }: Pla
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.36, delay: Math.min(index * 0.05, 0.3), ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        'surface-card relative p-0',
+        // overflow-hidden clips the full-bleed artwork to the card radius —
+        // without it the square top corners poke past the rounded border.
+        'surface-card relative overflow-hidden p-0',
         variant === 'rail' ? 'w-[248px] shrink-0' : 'w-full',
         className,
       )}

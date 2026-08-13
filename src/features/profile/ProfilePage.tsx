@@ -159,7 +159,9 @@ export default function ProfilePage() {
             </Card>
 
             <nav aria-label="Account">
-              <ul className="surface-card divide-y divide-line p-0">
+              {/* overflow-hidden keeps the first/last row's hover fill inside
+                  the card radius. */}
+              <ul className="surface-card divide-y divide-line overflow-hidden p-0">
                 {links.map((link) => (
                   <li key={link.label}>
                     <button
