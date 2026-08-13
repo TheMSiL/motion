@@ -1,0 +1,310 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   MOTION — design tokens
+   Every value the UI uses lives here. Components reference tokens, never
+   raw hex codes, so the whole product re-skins from this one block.
+   ========================================================================== */
+
+@theme {
+  --font-sans:
+    'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+
+  --radius-card: 24px;
+  --radius-sheet: 28px;
+  --radius-pill: 999px;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 22.5rem;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f2f2ef;
+  --surface: #ffffff;
+  --surface-2: #ebeae5;
+  --surface-3: #e2e1db;
+  --surface-inverse: #16181a;
+
+  /* Ink */
+  --ink: #16181a;
+  --ink-2: #5b6063;
+  --ink-3: #8d9295;
+  --ink-inverse: #f7f7f4;
+
+  /* Lines */
+  --line: #e2e1db;
+  --line-strong: #d2d1ca;
+
+  /* Accent — electric lime. Used only for active states, primary CTAs,
+     progress and the single most important metric on a screen. */
+  --accent: #d4fb3c;
+  --accent-strong: #c2ec1f;
+  --accent-ink: #16181a;
+  --accent-soft: rgba(196, 236, 52, 0.22);
+
+  /* Semantic */
+  --positive: #1f9d55;
+  --negative: #d2483c;
+  --info: #2b6cb0;
+  --warning: #b7791f;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(22, 24, 26, 0.05);
+  --shadow-card: 0 2px 8px -2px rgba(22, 24, 26, 0.07), 0 8px 24px -12px rgba(22, 24, 26, 0.12);
+  --shadow-lift: 0 8px 20px -6px rgba(22, 24, 26, 0.14), 0 24px 48px -24px rgba(22, 24, 26, 0.22);
+  --shadow-sheet: 0 -8px 40px -12px rgba(22, 24, 26, 0.28);
+  --shadow-device: 0 40px 80px -32px rgba(22, 24, 26, 0.45), 0 0 0 1px rgba(22, 24, 26, 0.06);
+
+  /* Motion */
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+  --dur-slow: 400ms;
+
+  /* Layout */
+  --header-h: 60px;
+  --nav-h: 68px;
+  --gutter: 20px;
+
+  /* Map palette — the mock cartography reads as a real basemap. */
+  --map-bg: #e9e7e0;
+  --map-block: #f2f1ec;
+  --map-road: #ffffff;
+  --map-road-minor: #f7f6f2;
+  --map-water: #d5e3e8;
+  --map-park: #dfe7d1;
+  --map-rail: #cfcdc5;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #0c0d0f;
+  --surface: #17191c;
+  --surface-2: #202327;
+  --surface-3: #2a2e33;
+  --surface-inverse: #f7f7f4;
+
+  --ink: #f4f5f3;
+  --ink-2: #a3a8ac;
+  --ink-3: #71777b;
+  --ink-inverse: #16181a;
+
+  --line: #262a2e;
+  --line-strong: #343a3f;
+
+  --accent: #d4fb3c;
+  --accent-strong: #e2ff6b;
+  --accent-ink: #10120f;
+  --accent-soft: rgba(212, 251, 60, 0.16);
+
+  --positive: #4ade80;
+  --negative: #f87171;
+  --info: #7dabf8;
+  --warning: #fbbf24;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 2px 8px -2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 8px 20px -6px rgba(0, 0, 0, 0.6), 0 24px 48px -24px rgba(0, 0, 0, 0.8);
+  --shadow-sheet: 0 -8px 40px -12px rgba(0, 0, 0, 0.7);
+  --shadow-device: 0 40px 80px -32px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  --map-bg: #101215;
+  --map-block: #171a1e;
+  --map-road: #262b31;
+  --map-road-minor: #1e2226;
+  --map-water: #10222b;
+  --map-park: #16211a;
+  --map-rail: #2c3138;
+}
+
+/* Expose the tokens as Tailwind utilities (bg-surface, text-ink-2, ...) */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-inverse: var(--surface-inverse);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-inverse: var(--ink-inverse);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-info: var(--info);
+  --color-warning: var(--warning);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-sheet: var(--shadow-sheet);
+  --shadow-device: var(--shadow-device);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .dark :focus-visible {
+    outline-color: var(--accent);
+  }
+
+  button,
+  [role='button'] {
+    touch-action: manipulation;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Display type: tight, confident, urban. */
+@utility text-display {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility text-metric {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small all-caps label used above every metric group. */
+@utility text-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility surface-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* The app always lays out inside a fixed-size viewport: the whole screen on
+   mobile, the device frame on desktop. Sizing is left to the caller so the
+   height utility next to it always wins. */
+@utility app-viewport {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+/* Anchors position:fixed children to the phone frame instead of the window. */
+@utility contain-fixed {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Reduced motion — disable route drawing, page transitions and large motion.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Forces the night basemap regardless of theme — used by the always-dark
+   recording screen and the share card. */
+.map-night {
+  --map-bg: #101215;
+  --map-block: #171a1e;
+  --map-road: #262b31;
+  --map-road-minor: #1e2226;
+  --map-water: #10222b;
+  --map-park: #16211a;
+  --map-rail: #2c3138;
+}
+
+/* Hide the share canvas used for local image export. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,6 @@
+export { activityService } from './activity.service'
+export { placeService } from './place.service'
+export { goalService } from './goal.service'
+export { notificationService } from './notification.service'
+export { userService } from './user.service'
+export { ApiError } from './client'
